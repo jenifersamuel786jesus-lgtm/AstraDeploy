@@ -1,0 +1,12 @@
+{
+  "venvPath": "/home/ubuntu/astradeploy",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Linux",
+  "typeCheckingMode": "basic",
+  "executionEnvironments": [
+    { "root": ".", "extraPaths": ["."] }
+  ],
+  "include": ["backend", "tests"],
+  "exclude": [".venv", "**/__pycache__/**"]
+}

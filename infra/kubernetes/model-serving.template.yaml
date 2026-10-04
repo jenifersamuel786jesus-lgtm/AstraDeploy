@@ -1,0 +1,49 @@
+# Review template only. Replace placeholders, inspect policies and obtain approval before use.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-serving-placeholder
+  namespace: replace-with-approved-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: model-serving-placeholder
+  template:
+    metadata:
+      labels:
+        app: model-serving-placeholder
+    spec:
+      containers:
+        - name: inference
+          image: registry.example.invalid/replace-me:review-only
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: "1"
+              memory: 2Gi
+            limits:
+              cpu: "2"
+              memory: 4Gi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-serving-placeholder
+  namespace: replace-with-approved-namespace
+spec:
+  selector:
+    app: model-serving-placeholder
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+  type: ClusterIP

@@ -1,0 +1,13 @@
+[project]
+name = "astradeploy"
+version = "0.1.0"
+description = "Context-aware MLOps resource planning and demo workflows"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"

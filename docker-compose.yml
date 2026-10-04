@@ -1,0 +1,17 @@
+services:
+  astradeploy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/astradeploy.db}
+      ASTRA_LOCAL_HTTP_COOKIES: ${ASTRA_LOCAL_HTTP_COOKIES:-true}
+    volumes:
+      - astradeploy-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  astradeploy-data:
