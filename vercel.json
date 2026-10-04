@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "backend/app/static",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://astradeploy.onrender.com/api/:path*"
+    },
+    {
+      "source": "/healthz",
+      "destination": "https://astradeploy.onrender.com/healthz"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}
